@@ -3,25 +3,29 @@
 
 A preliminaries chapter is not necessary, but it may be a good idea to use it for presenting your theoretical/mathematical framework in a more detailed and technical way than the introduction, and to perhaps establish some basic lemmata/observations common to multiple chapters of your thesis.
 
-\section{Some section}
+\subsection{Diffusion Models for Content Generation}
+Diffusion models~\cite{ho2020denoising, rombach2022highresolutionimagesynthesislatent, saharia2022photorealistictexttoimagediffusionmodels} have demonstrated remarkable success in modeling complex data distributions and generating high-fidelity samples. In the realm of 2D image synthesis, these models have achieved state-of-the-art results, producing photorealistic images with precise control. Motivated by this success, recent works have explored the application of diffusion models to 3D content creation.
 
-Let's define some concept we'll be using throughout the thesis.
+\vspace{-14pt}
+ \paragraph{3D Diffusion Models}
+Some works utilize 3D datasets to train diffusion models for direct 3D asset generation, with different approaches varying in their choice of 3D representations. Some methods employ explicit representations~\cite{zhang2024gaussiancubestructuredexplicitradiance, yariv2024mosaicsdf3dgenerativemodels} such as point clouds~\cite{schröppel2024neuralpointclouddiffusion, nichol2022pointe, zhou20213dshapegenerationcompletion, lyu2023controllablemeshgenerationsparse, NEURIPS2022_40e56dab}. Others transform the input data into learned implicit representations such as triplanes~\cite{shue20223dneuralfieldgeneration,gupta20233dgentriplanelatentdiffusion, chen2023singlestagediffusionnerfunified} or neural networks~\cite{li2023diffusionsdftexttoshapevoxelizeddiffusion, hui2022neuralwaveletdomaindiffusion3d} before learning their distributions. A notable example is Shap-E~\cite{jun2023shape}, which adopts NeRF (Neural Radiance Field) and SDF (Signed Distance Field) as implicit representations and trains a diffusion model to generate the weights of these networks. While these 3D-native diffusion models enable fast generation and provide greater control over the generation process~\cite{sella2024spicee}, they often face challenges due to limited training data and the high computational cost of operating directly on 3D representations.
 
-\begin{definition}
-The \emph{von Neumann model} of a computer, also known as the \emph{Princeton architecture} is an architecture for digital computers, which consists of a processing units, containing an ALU and processing registers; a control unit consisting of an instruction register and a program counter; a memory unit which stores both data and instructions; and input-and-output mechanisms.
-\end{definition}
+\vspace{-14pt}
+\paragraph{2D Diffusion Models for 3D Generation}
+Another approach leverages the powerful prior of pretrained text-to-image diffusion models \cite{rombach2022highresolutionimagesynthesislatent} for 3D generation. Some methods \cite{wang2022scorejacobianchaininglifting, poole2022dreamfusion,metzer2022latent, katzir2024noisefree, chen2023fantasia3d, wang2023prolificdreamer, lin2023magic3dhighresolutiontextto3dcontent, yi2024gaussiandreamerfastgenerationtext,tang2024dreamgaussiangenerativegaussiansplatting} utilize these models to guide the optimization of 3D representations, such as NeRF or Gaussian Splatting, typically through Score Distillation Sampling (SDS)~\cite{poole2022dreamfusion} or its variants.
+To enhance and accelerate SDS-guided optimization, recent methods fine-tune 2D diffusion models on 3D datasets~\cite{deitke2023objaversexluniverse10m3d}. Zero-1-to-3~\cite{liu2023zero1to3} fine-tunes a pre-trained diffusion model by incorporating input views and camera parameters to enable novel-view synthesis. Building upon this fine-tuning strategy, some followup works~\cite{shi2024mvdream, liu2024syncdreamergeneratingmultiviewconsistentimages,Szymanowicz_2023_ICCV,shi2023zero123singleimageconsistent} enable simultaneous generation of multiple views using shared attention mechanisms. While these 3D-aware fine-tuning approaches strengthen the prior and improve both convergence speed and result quality when used in SDS-based optimization, the per-shape optimization process still requires substantial computational time.
 
-\section{Acronyms and abbreviations}
+To overcome the high computational costs of per-shape optimization, recent works propose two-stage approaches that first generate multi-view images and then apply fast mesh reconstruction techniques to create 3D objects from these images. One-2-3-45~\cite{liu2023one2345} and One-2-3-45++~\cite{liu2023one2345++} employ feed-forward networks to perform fast, high-quality asset creation. Wonder3D~\cite{long2023wonder3dsingleimage3d} introduces a cross-domain attention mechanism that generates both normal map images and color images, which facilitates fast mesh reconstruction through novel geometry-aware normal fusion algorithms.
+%
+3D-Adapter~\cite{3dadapter2024} constructs a consistent 3D representation throughout the denoising process.
+%
+InstantMesh~\cite{xu2024instantmesh} is a sparse-view 3D reconstruction method that utilizes a feed-forward network based on the LRM~\cite{hong2024lrmlargereconstructionmodel} architecture. Recent advancements in feed-forward sparse-view 3D reconstruction further improve reconstruction quality with different architectures and training paradigms~\cite{zhuang2024gtr, jin2024lvsmlargeviewsynthesis}. While these methods successfully generate high-quality objects rapidly, the reliance on multi-view images limits controllability and editing capabilities.
+ 
 
-Your thesis will typically have a set of significant terms, abbreviations and acronyms. Technion guidelines mandate that you place a list of these at the beginning of your thesis; and that they be defined upon first use. And, indeed, if you followed read this sample thesis carefuly thus far you should have seen ``\nameref{chap:notation-and-abbreviations}'' following the abstract.
+\vspace{-2pt}
+\subsection{Controlled Generation and Editing}
+\vspace{-2pt}
+Extensive work has focused on developing methods for controlled generation and editing of images and video by employing 2D diffusion models~\cite{mokady2023null, garibi2024renoise, Avrahami_2022_CVPR, wu2024turboedit, deutch2024turboedittextbasedimageediting, huberman2024edit, brooks2022instructpix2pix, zhang2023adding, li2023gligen, avrahami2023spatext,cohen2024sliceditzeroshotvideoediting}. Many of these approaches leverage the semantic features learned by the models to gain control and perform edits~\cite{zhang2023adding, hertz2022prompt, Tumanyan_2023_CVPR, patashnik2023localizing, Cao_2023_ICCV, parmar2023zero}.
+Some methods have extended the control and editing capabilities of 2D diffusion models to 3D representations~\cite{haque2023instructnerf2nerfediting3dscenes, koo2024posteriordistillationsampling, patashnik2024consolidating, li2023diffusionsdftexttoshapevoxelizeddiffusion, bhat2023loosecontrol, mvedit2024}. However, these typically require computationally expensive optimization processes per object. Faster control and editing of 3D shapes can be achieved through the latent spaces of native 3D generative models~\cite{sella2024spicee, sella2023vox, chen2023shapeditor, hu2023neuralwaveletdomaindiffusion3d, liu2023meshdiffusionscorebasedgenerative3d}. Yet, the quality of shapes generated by these methods is often limited by the output quality of the underlying 3D models, which can be constrained by resolution limitations.
+In this work, we propose a novel approach that combines 3D generative models with a multi-view enhancement method to obtain high-quality 3D controlled generation and editing pipelines.
 
-When writing your thesis, collect such terms and their corresponding definitions in the \texttt{front/abbrevs.tex} file --- using the commands \verb|\newacronym|,  \verb|\newabbreviation| and \verb|\newglossaryentry|; the latter command is used for symbols and short, but unabbreviated, terms.
-
-In the body of your thesis, your first use of a term will typically be where you want to also include the text of its definition. You don't need to repeat the definition you've already entered! Let's explain with an example: You've defined the term \gls{DIY} beforehand; when using it, you invoke the command \verb|\gls{DIY}|.\footnote{The 
-\texttt{\textbackslash{}gls} command originates in the \texttt{glossaries-extra} package, which is used to automate the handling of notation \& abbreviations.} This command does several things:
-\begin{itemize}
-	\item It ensures the term \gls{DIY} is included in the list of Notation \& Abbreviation, at the beginning of the thesis; the entry for the term will also include the page on which it first appears;
-	\item It produces the definition text; and finally
-	\item It adds the defined term --- \gls{DIY} --- in parentheses, after the definition.
-\end{itemize}
-In later invocations of \verb|\gls{DIY}|, only the short form (\gls{DIY}) will be printed, not the definition, and no parentheses. (This also means that if you move text around in your thesis you don't have to worry about defining on first use - that's already taken care of.) 

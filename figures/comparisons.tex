@@ -1,0 +1,80 @@
+\begin{figure*}
+    \centering
+    \setlength{\tabcolsep}{3pt}
+    {\scriptsize
+    \begin{tabular}{ccccccccc}
+
+        & Input (Shap-E) & GaussianDreamer & MVEdit & MVDream w/  & Zero123++ w/ & Zero123++ w/ & Zero123++ w/ & Ours (\ourname) \\
+        & & & & SDEdit & SDEdit (U) & SDEdit (C)  & SDEdit (R)\\
+        %\
+        
+        \raisebox{43pt}{\multirow{2}{*}{\rotatebox[origin=t]{90}{``An avocado shaped leather couch''}}} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/shap-e/avocado_couch_view1_shap_e.png} &
+        \includegraphics[width=0.10\linewidth, trim=30 30 30 30, clip,]{images/comparison_plot/avocado_couch/gaussian_dreamer/1.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/mvedit/1.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/mvdream/avo_couch_upscaled_3.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++/avo_couch_tile_2_3.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++image/avo_couch_tile_1_3.jpg} &
+         \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++refiner/split_image_0_2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/sharp-e/avocado_couch_view1_sharp_e.png} \\
+        %
+        &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/shap-e/avocado_couch_view2_shap_e.png} &
+       \includegraphics[width=0.10\linewidth, trim=30 30 30 30, clip,]{images/comparison_plot/avocado_couch/gaussian_dreamer/3.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/mvedit/2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/mvdream/avo_couch_upscaled_1.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++/avo_couch_tile_2_6.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++image/avo_couch_tile_1_6.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/zero123++refiner/split_image_0_5.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/avocado_couch/sharp-e/avocado_couch_view2_sharp_e.png} \\
+        %
+        \raisebox{36pt}{\multirow{2}{*}{\rotatebox[origin=t]{90}{``A bust of a man with a beard''}}} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/shap-e/tile_0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/gaussian_dreamer/0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/mvedit/1.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/mvdream/white_tile1.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++/efbb32609fd44a4f849015e875bc57a1_tile_1.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++img/efbb32609fd44a4f849015e875bc57a1_tile_1.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++refiner/split_image_1_0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/sharp-e/efbb32609fd44a4f849015e875bc57a1_tile_1.png} \\
+        %
+         &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/shap-e/tile_2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/gaussian_dreamer/bust_gaussian_dreamer_2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/mvedit/2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/mvdream/white_tile2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++/efbb32609fd44a4f849015e875bc57a1_tile_3.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++img/efbb32609fd44a4f849015e875bc57a1_tile_3.png} &
+         \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/zero123++refiner/split_image_1_2.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/bust/sharp-e/efbb32609fd44a4f849015e875bc57a1_tile_3.png} \\
+        %
+        \raisebox{25pt}{\multirow{2}{*}{\rotatebox[origin=t]{90}{``A wooden tiki mask''}}} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/shap-e/render_0000-4.jpg} & 
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/gaussiandreamer/0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/mvedit/render_0000-3.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/mvdream/tile_0.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++unguided/avocado_couch_sdedit_steps_batch_0_tile_0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++guided/tiki_mask_guided_tile_0.png} &
+         \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++refiner/split_image_2_0.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/sharp-e/10_75_steps_batch_0_a_wooden_tiki_mask_tile_0.png} \\
+        %
+        &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/shap-e/render_0005-2.jpg} & 
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/gaussiandreamer/3.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/mvedit/render_0005.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/mvdream/tile_1-2.jpg} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++unguided/avocado_couch_sdedit_steps_batch_0_tile_5.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++guided/tiki_mask_guided_tile_5.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/zero123++refiner/split_image_2_5.png} &
+        \includegraphics[width=0.10\linewidth]{images/comparison_plot/tiki_mask/sharp-e/10_75_steps_batch_0_a_wooden_tiki_mask_tile_5.png} \\
+
+    \end{tabular}
+    }
+    \vspace{-12pt}
+    \caption{
+    Comparison of \ourname{} with other methods for 3D object enhancement (GaussianDreamer and MVEdit), and multi-view enhancement (SDEdit based). The first column shows the input object generated by Shap-E. As can be seen, our method achieves the highest quality results while best preserving the input object. 
+    }
+    \vspace{-12pt}
+    \label{fig:mv2mv-comparisons}
+\end{figure*}
+
