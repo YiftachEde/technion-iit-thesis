@@ -11,13 +11,26 @@
 %   defended - drop this option.
 % noabbrevs          avoid generation of a notation & abbreviations list
 %
-% Additionally, you must specify the degree for which you're writing
+% Additionally, you must specify the degree for which you're writinfg
 % your thesis (MSc/PhD/MArch etc.)
 %
-\documentclass[PhD,with-ethics-statement]{misc/iitthesis}
+\documentclass[PhD,with-ethics-statement,noabbrevs,beforeDefense]{misc/iitthesis}
 \usepackage{multirow}
+\usepackage{float}      
+\newglossary[nlg]{notation}{not}{ntn}{Notation}
+% allow [H] placement for figures
+\usepackage[section]{placeins} % \FloatBarrier after sections
 \newcommand{\ourname}{Sharp-It}
+\usepackage{graphicx}   % already present in almost every template
+\usepackage{multirow}
+\usepackage{makecell}   
+\newlength{\shift}   \setlength{\shift}{-0.06\textwidth} % left-shift amount
+\newlength{\imgW}    \setlength{\imgW}{0.095\textwidth} % width of each thumbnail % gives nice line-breaking inside boxes
 
+% One-line macro for rotated, line-breaking labels
+\newcommand{\rotlabel}[2][3cm]{% 1st arg = width before rotation
+  \rotatebox[origin=t]{90}{%
+    \parbox[c]{#1}{\centering #2}}}
 % Definitions of info fields for the thesis - subject, advisor,
 % faculty, acknowledgements, etc. etc. The thesis-fields file 
 % contains Hebrew text, and should use the UTF-8 character set
@@ -62,7 +75,7 @@
 % The following command will typeset the outer cover page, the
 % inner title page, the acknowledgements page, etc. - everything
 % up to but not including the introduction
-% \makefrontmatter
+\makefrontmatter
 
 % Main Matter
 % ------------

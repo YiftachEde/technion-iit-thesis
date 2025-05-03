@@ -319,9 +319,9 @@
   \long\@namedef{#1}##1{\@namedef{iitthesis@#1}{##1}}
 }
 
-\iitthesis@thesisdatafield{authorEnglish}{Name of Author}
+\iitthesis@thesisdatafield{authorEnglish}{Yiftach Edelstein}
 \iitthesis@thesisdatafield{authorHebrew}{שם המחבר}
-\iitthesis@thesisdatafield{titleEnglish}{Thesis Title}
+\iitthesis@thesisdatafield{titleEnglish}{Sharp-It: Enhancing 3D Generation Quality via Multi-View Diffusion Refinement}
 \iitthesis@thesisdatafield{titleHebrew}{כותרת החיבור}
 \iitthesis@thesisdatafield{disciplineEnglish}{Discipline Name}
 \iitthesis@thesisdatafield{disciplineHebrew}{שם התחום המדעי}
