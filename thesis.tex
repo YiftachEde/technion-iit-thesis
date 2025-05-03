@@ -15,7 +15,8 @@
 % your thesis (MSc/PhD/MArch etc.)
 %
 \documentclass[PhD,with-ethics-statement]{misc/iitthesis}
-
+\usepackage{multirow}
+\newcommand{\ourname}{Sharp-It}
 
 % Definitions of info fields for the thesis - subject, advisor,
 % faculty, acknowledgements, etc. etc. The thesis-fields file 
@@ -61,7 +62,7 @@
 % The following command will typeset the outer cover page, the
 % inner title page, the acknowledgements page, etc. - everything
 % up to but not including the introduction
-\makefrontmatter
+% \makefrontmatter
 
 % Main Matter
 % ------------
@@ -112,6 +113,9 @@
 % in the file will be the last page of the abstract, and the
 % Hebrew cover page will be the last page of the file.
 %
+% \bibliographystyle{plain}
+% \bibliography{back/general}
+
 \makebackmatter
 
 % The resulting PDF can be printed and taken straight to binding,
