@@ -88,6 +88,13 @@
 \newbool{iitthesis-keep-unused-abbrevs}
 \boolfalse{iitthesis-keep-unused-abbrevs}
 
+\newbool{iitthesis-include-ethics-statement}
+\boolfalse{iitthesis-include-ethics-statement}
+\DeclareOption{with-ethics-statement}{
+  \booltrue{iitthesis-include-ethics-statement}
+}
+
+
 \newbool{iitthesis-includeack}
 \booltrue{iitthesis-includeack}
 \DeclareOption{beforeDefense}{
@@ -149,7 +156,16 @@
     \makeglossaries
   }
   \setabbreviationstyle[acronym]{long-short}
-}{}
+}{
+  % Q: Why should we use/require a glossary-related package if we're
+  %    running with the `noabbrevs` option set?
+  % A: This is due to a bug - either with this document class or
+  %    more likely with the combination of amsmath and ntheorem
+  %    in some situations. We get this error:
+  %    https://github.com/eyalroz/technion-iit-thesis/issues/67
+  %    and, somehow, requiring this package makes it go away
+  \RequirePackage{glossaries-extra}
+}
 
 \iitthesis@geometry
 
@@ -313,6 +329,9 @@
 \iitthesis@thesisdatafield{supervisionHebrew}{מידע על המנחים וההנחיה}
 \iitthesis@thesisdatafield{publicationInfoHebrew}{ציון אם העבודה פורסמה בכתבי עת או  הוצגה בכנסים. הרשימה תכתב בהתאם לכללי הציטוט (כולל הכותר ושמות השותפים). במקרה של שיתוף פעולה, פירוט תרומת המגיש.}
 \iitthesis@thesisdatafield{publicationInfoEnglish}{Info about whether the contents of the thesis was published, about collaborators and the thesis author's contribution.}
+\iitthesis@thesisdatafield{ethicsStatementHebrew}{הצהרה אודות עמידת המחקר, והחיבור, בכללים אתיים.}
+\iitthesis@thesisdatafield{ethicsStatementEnglish}{Statement regarding adherence to ethical standards --- of the research activity and of the thesis.}
+
 \iitthesis@thesisdatafield{GregorianDateEnglish}{Gregorian Month and Year}
 \iitthesis@thesisdatafield{GregorianDateHebrew}{חודש ושנה גרגוריאניים}
 \iitthesis@thesisdatafield{JewishDateEnglish}{Hebrew Month and Year}
@@ -592,6 +611,18 @@
     \noindent \iitthesis@publicationInfoEnglish
 
   \fi
+  
+    \ifbool{iitthesis-include-ethics-statement}{
+    \medskip
+    \noindent \iitthesis@ethicsStatementEnglish
+
+  }{}
+  \ifbool{iitthesis-include-ethics-statement}{
+    \medskip
+    \noindent \iitthesis@ethicsStatementHebrew
+
+  }{}
+
   \ifbool{iitthesis-includeack}{
     %\vspace*{\stretch{1}}
     \medskip

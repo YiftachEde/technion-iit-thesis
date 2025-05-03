@@ -1,24 +1,24 @@
-# Makefile for thesis.
-# Simply run `make` to build the thesis.pdf.
-# You can also use `make pvc` to "preview continuously" (i.e. pdf will update
-# in real time while editing the source files).
-# Use `make clean` to remove all generated files.
-# Note that all auxilliary files will be stored in the `aux` directory to keep
-# the root directory clean.
+# Makefile for thesis generation using the Technion IIT document class
 #
-# This is roughly based on: 
-# https://drewsilcock.co.uk/using-make-and-latexmk
-# http://tex.stackexchange.com/questions/40738/how-to-properly-make-a-latex-project
+# To use it, you must have GNU Make installed (in addition to a LaTeX
+# distribution), and standard shell tools like GNU `find`. Then, in the same
+# directory as this file, invoke `make`.
 #
+# You can also invoke `make pvc` to "preview continuously" (i.e. pdf will update
+# in real time while editing the source files), or `make clean` to remove all
+# generated files.
+#
+# This is roughly based on:
+
 
 LATEX=xelatex
 LATEXOPT=--shell-escape
-NONSTOP=--interaction=nonstopmode
-AUXDIR=aux
+# See also the various settings in .latexmkrc
+#
+
 
 LATEXMK=latexmk
-LATEXMKOPT=-pdf -outdir=$(AUXDIR) -auxdir=$(AUXDIR)
-CONTINUOUS=-pvc
+CONTINUOUS=-pvc --interaction=nonstopmode
 
 MAIN=thesis
 OUTPUT_FILENAME=thesis
@@ -29,13 +29,13 @@ FIGURES := $(shell find graphics/* -type f)
 all: symlink once
 
 once: symlink
-	$(LATEXMK) $(LATEXMKOPT) -pdflatex="$(LATEX) $(LATEXOPT) %O %S" $(MAIN)
+	$(LATEXMK) $(MAIN)
 
 .refresh:
 	touch .refresh
 
 pvc: aux $(MAIN).tex .refresh $(SOURCES) $(FIGURES)
-	$(LATEXMK) $(LATEXMKOPT) $(CONTINUOUS) -pdflatex="$(LATEX) $(LATEXOPT) $(NONSTOP) %O %S" $(MAIN)
+	$(LATEXMK) $(CONTINUOUS) $(MAIN)
 
 # Create a symlink for the final PDF
 symlink: aux

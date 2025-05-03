@@ -1,20 +1,21 @@
 # technion-iit-thesis
 
-A LaTeX class for authoring masters' and doctoral thesis at the Technion IIT, in conformance with the Technion's formatting requirements, and a sample thesis using this LaTeX class, the files and directory structure of which can serve as a template for a real thesis.
+A LaTeX document class for authoring masters' or doctoral thesis at the Technion IIT, in conformance with the Technion's formatting requirements, and a sample thesis using this LaTeX class, the files and directory structure of which can serve as a template for an actual thesis.
 
 ## Using the template
 
 ### Getting started
 
-Basically, you just compile it using `xelatex`. The template should compile well on a modern (2013 or later) TeX distribution such as TeXLive or MikTeX. The most convenient way to do so is to use the `latexmk` Make-like tool included in these packages, in the template's root folder (where `thesis.tex` is located), as follows:
+1. Deploy a recent LaTeX distribution like (TeXLive or MikTeX, 2018 or later).
+2. Invoke the `latexmk` Make-like tool included in your TeX distribution, at the thesis' root folder (where `thesis.tex` is located), like so:
 
-    latexmk -xelatex thesis
+       latexmk thesis
 
-The build tool should invoke the appropriate executable repeatedly (including `bibtex`, `xelatex` etc.) until building has concluded or an error is encountered. The template, as distributed, should compile without error (but with some warnings); once you've compiled it you have a `thesis.pdf` file, which you should read for additional information.
+The template, as distributed, should compile without error (but with some warnings); once you've compiled it you have a `thesis.pdf` file, which you should read for additional information.
 
-Alternatively, if you're on a Unix-like system, you can use the Makefile; see [this description](https://github.com/eyalroz/technion-iit-thesis/pull/19). If you don't know what a Makefile is - never mind.
+Why this `latexmk` tool? Building/compiling the thesis requires multiple invocations of the `xelatex` processor, interspersed with invocations of other tools (`biber`, `makeindex`) - for bibliography, indices, table-of-contents, etc. In fact, even plain-vanilla `latexmk` requires a bit of help to ensure it invokes `make_glossaries`  (details in `.latexmkrc`). TeX IDEs (like TeXStudio, WinEdt, Kile) will typically not be able to "figure it all out" by themselves, and will thus fail to properly build the thesis.
 
-### "Ok, I've compiled the template; what next?"
+If you're on a Unix-like system (e.g. Linux, MacOS), there is also a `Makefile` which offers a little more functionality, like archiving and symlinking; see [this description](https://github.com/eyalroz/technion-iit-thesis/pull/19), or the comments within the `Makefile` itself. If you don't know what a Makefile is - never mind.
 
 You modify it until it becomes your own actual thesis:
 
@@ -39,14 +40,15 @@ If you've found this file within some archive or on one of the Technion's web se
 
 ### Key Features
 
-- (Hopefully) maintained to be in conformance with the [Technion graduate school](http://www.graduate.technion.ac.il/eng)'s [requirements from Ph.D. theses](http://www.graduate.technion.ac.il/eng/FinalProcedures/Editing%20%20Submission%20of%20Thesis.htm) ([Hebrew version](http://www.graduate.technion.ac.il/Heb/Graduation/Thesis_editing.asp)).
+- (Hopefully) maintained to be in conformance with the [Technion graduate school](https://graduate.technion.ac.il/)'s requirements regarding the typesetting, organization and contents of research theses: [English](https://graduate.technion.ac.il/en/graduation-2/editing-the-thesis/), ([Hebrew](https://graduate.technion.ac.il/graduation/thesis-editing/)).
+
 - Supports printing _everything_ just once, into a single PDF file, in a single run, with all of the spacing arranged properly. This may sound trivial if you don't write in Hebrew, but it is a small hell to get this all to work without having to insert empty pages in your LaTeX, print sections separately, flip directions of the printed versions etc. No more!
 - Has both a pre-thesis-defense mode, for the version sent to your thesis readers, and a post-defense mode for the copies you submit to the library, give to your friends/wife/parents/children etc.
 - Various convenience features (most of them outside of the document class file and in an optional `.sty` style file)
 
 ### Is this actually used or endorsed?
 
-This class was adopted as the [official Ph.D. thesis template](http://www.cs.technion.ac.il/graduate/etc/thesis-template/) of the [Technion Faculty of Computer Science](http://www.cs.technion.ac.il/), in 2013. Multiple Ph.D. and M.Sc. candidates have used it already, but we don't have any statistics.
+This class was adopted as the [official Ph.D. thesis template](https://graduate.cs.technion.ac.il/en/graduate-studies/graduation/hagasha/) of the [Technion Faculty of Computer Science](http://www.cs.technion.ac.il/), in 2013. Numerous Ph.D. and M.Sc. candidates have used it already, but we don't have any statistics.
 
 ### Contributors
 
@@ -62,7 +64,8 @@ This class was adopted as the [official Ph.D. thesis template](http://www.cs.tec
 | question about using the thesis template                         | write [the maintainer](mailto:eyalroz1@gmx.com)                                                                                                                                                                             |
 | bug / mistake you'd like to report                               | file it as a new issue on the [issues page](https://github.com/eyalroz/technion-iit-thesis/issues)                                                                                                                                |
 | suggestion or feature request regarding the template             | file it as a new issue on the [issues page](https://github.com/eyalroz/technion-iit-thesis/issues)                                                                                                                                |
-| question regarding the thesis submission process                     | Contact your department's graduate studies secretariat.                                                          |
+| question regarding the Graduate School's thesis authoring requirements | Contact the "Graduation Procedure" staff at the Graduate School (Contact info: [English](https://graduate.technion.ac.il/en/contact/), [Hebrew](https://graduate.technion.ac.il/contact-us/)) |
+
 | question regarding the Graduate School's guidelines for theses | Contact the "conclusion-stage" department at the Graduate School (Contact info: [English](http://www.graduate.technion.ac.il/Eng/General_info/Contact_us.asp), [Hebrew](http://www.graduate.technion.ac.il/Heb/General/Contact_us.asp)) |
 | the ability to help the maintainer get his `@technion.ac.il` email address back | write [the maintainer](mailto:eyalroz1@gmx.com)                                                                                                                                                                             |
 | some other kind of feedback                                      | write [the maintainer](mailto:eyalroz1@gmx.com)                                                                                                                                                                             |
@@ -105,7 +108,6 @@ README.md
 	this file
 Makefile
         Does some build/cleaning automation for you
-makezip.sh
-makezip.bat
-	Used to create a ZIP archive of the template
+.latexmkrc
+        Extra rules for the latexmk too
 ```

@@ -1,0 +1,16 @@
+\begin{table}[ht]
+    \centering
+    \caption{Quantitative results of our ablation study. All models were trained for 400,000 steps.}
+    \label{tab:ablation}
+    \begin{tabular}{@{}lcccc@{}} % Align columns to the left
+        \toprule
+        \textbf{Ablation} & \textbf{FID $\downarrow$} & \textbf{CLIP $\uparrow$} & \textbf{DINO $\uparrow$}  \\ 
+        \midrule
+            W/o text prompt & 9.91 & \textbf{0.91} &0.91&  \\
+        W/o diverse lighting  & 9.16 & 0.89 & 0.91 &  \\
+        Full method & \textbf{8.06} & 0.89 & 0.91 \\
+
+        \bottomrule
+    \end{tabular}
+    \vspace{-16pt}
+\end{table}
